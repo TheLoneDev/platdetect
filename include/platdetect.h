@@ -1,6 +1,12 @@
 #ifndef _H_PLATDETECT_H
 #define _H_PLATDETECT_H
 
+#define PLATFORM_UNIX 0
+#define PLATFORM_ANDROID 0
+#define PLATFORM_WINDOWS 0
+#define PLATFORM_MACOS 0
+#define PLATFORM_IOS 0
+
 #ifdef __unix
   #define PLATFORM_UNIX 1
   #ifdef __linux
@@ -20,6 +26,7 @@
     #endif
 #endif
 
+#define PLATFORM_C_VER 0
 #ifdef __STDC__
     #if __STDC_VERSION__ == 199409L
         #define PLATFORM_C_VER 1995
@@ -32,6 +39,7 @@
     #endif
 #endif
 
+#define PLATFORM_CPP_VER 0
 #ifdef __cplusplus
     #if __cplusplus == 199711L
         #define PLATFORM_CPP_VER 1998
