@@ -56,4 +56,18 @@
     #endif
 #endif
 
+#if PLATFORM_CPP_VER > 0
+namespace platdetect
+{
+    inline constexpr bool IsLinux() { return static_cast<bool>(PLATFORM_LINUX); };
+    inline constexpr bool IsAndroid() { return static_cast<bool>(PLATFORM_ANDROID); };
+    inline constexpr bool IsWindows() { return static_cast<bool>(PLATFORM_WINDOWS); };
+    inline constexpr bool IsMacOSX() { return static_cast<bool>(PLATFORM_MACOS); };
+    inline constexpr bool IsIOS() { return static_cast<bool>(PLATFORM_IOS); };
+
+    inline constexpr int GetCVer() { return PLATFORM_C_VER; };
+    inline constexpr int GetCPPVer() { return PLATFORM_CPP_VER; };
+}
+#endif
+
 #endif
