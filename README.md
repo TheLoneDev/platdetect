@@ -5,6 +5,12 @@ My header file for C/++ preprocessor platform detection (Will probably update as
 Currently for common OSes
 
 ```
+#define PLATFORM_UNIX 0
+#define PLATFORM_ANDROID 0
+#define PLATFORM_WINDOWS 0
+#define PLATFORM_MACOS 0
+#define PLATFORM_IOS 0
+
 #ifdef __unix
   #define PLATFORM_UNIX 1
   #ifdef __linux
@@ -24,6 +30,7 @@ Currently for common OSes
     #endif
 #endif
 
+#define PLATFORM_C_VER 0
 #ifdef __STDC__
     #if __STDC_VERSION__ == 199409L
         #define PLATFORM_C_VER 1995
@@ -36,6 +43,7 @@ Currently for common OSes
     #endif
 #endif
 
+#define PLATFORM_CPP_VER 0
 #ifdef __cplusplus
     #if __cplusplus == 199711L
         #define PLATFORM_CPP_VER 1998
@@ -50,6 +58,21 @@ Currently for common OSes
     #elif __cplusplus == 202302L
         #define PLATFORM_CPP_VER 2023
     #endif
+#endif
+
+#if PLATFORM_CPP_VER > 0
+namespace platdetect
+{
+    inline constexpr bool IsUnix() { return static_cast<bool>(PLATFORM_UNIX); };
+    inline constexpr bool IsLinux() { return static_cast<bool>(PLATFORM_LINUX); };
+    inline constexpr bool IsAndroid() { return static_cast<bool>(PLATFORM_ANDROID); };
+    inline constexpr bool IsWindows() { return static_cast<bool>(PLATFORM_WINDOWS); };
+    inline constexpr bool IsMacOSX() { return static_cast<bool>(PLATFORM_MACOS); };
+    inline constexpr bool IsIOS() { return static_cast<bool>(PLATFORM_IOS); };
+
+    inline constexpr int GetCVer() { return PLATFORM_C_VER; };
+    inline constexpr int GetCPPVer() { return PLATFORM_CPP_VER; };
+}
 #endif
 
 ```

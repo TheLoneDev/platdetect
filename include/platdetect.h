@@ -59,6 +59,7 @@
 #if PLATFORM_CPP_VER > 0
 namespace platdetect
 {
+    inline constexpr bool IsUnix() { return static_cast<bool>(PLATFORM_UNIX); };
     inline constexpr bool IsLinux() { return static_cast<bool>(PLATFORM_LINUX); };
     inline constexpr bool IsAndroid() { return static_cast<bool>(PLATFORM_ANDROID); };
     inline constexpr bool IsWindows() { return static_cast<bool>(PLATFORM_WINDOWS); };
