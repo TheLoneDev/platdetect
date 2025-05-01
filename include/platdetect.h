@@ -8,26 +8,33 @@
 #define PLATFORM_IOS 0
 
 #ifdef __unix
+  #undef PLATFORM_UNIX 
   #define PLATFORM_UNIX 1
   #ifdef __linux
       #ifdef __ANDROID__
+          #undef PLATFORM_ANDROID
           #define PLATFORM_ANDROID 1
       #else
+          #undef PLATFORM_LINUX
           #define PLATFORM_LINUX 1
       #endif
   #endif
 #elif defined(_WIN32)
+    #undef PLATFORM_WINDOWS
     #define PLATFORM_WINDOWS 1
 #elif defined(__APPLE__)
     #ifdef TARGET_OS_OSX
+        #undef PLATFORM_MACOS
         #define PLATFORM_MACOS 1
     #elif defined(TARGET_OS_IPHONE)
+        #undef PLATFORM_IOS
         #define PLATFORM_IOS 1
     #endif
 #endif
 
 #define PLATFORM_C_VER 0
 #ifdef __STDC__
+    #undef PLATFORM_C_VER
     #if __STDC_VERSION__ == 199409L
         #define PLATFORM_C_VER 1995
     #elif __STDC_VERSION__ == 199901L
@@ -36,11 +43,14 @@
         #define PLATFORM_C_VER 2011
     #elif __STDC_VERSION__ == 201710L
         #define PLATFORM_C_VER 2017
+    #else
+        #define PLATFORM_C_VER 0
     #endif
 #endif
 
 #define PLATFORM_CPP_VER 0
 #ifdef __cplusplus
+    #undef PLATFORM_CPP_VER
     #if __cplusplus == 199711L
         #define PLATFORM_CPP_VER 1998
     #elif __cplusplus == 201103L
@@ -53,6 +63,8 @@
         #define PLATFORM_CPP_VER 2020
     #elif __cplusplus == 202302L
         #define PLATFORM_CPP_VER 2023
+    #else
+        #define PLATFORM_CPP_VER 0
     #endif
 #endif
 
